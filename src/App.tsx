@@ -16,12 +16,30 @@ type Country = {
 export default function App() {
   const [countries, setCountries] = useState<Country[]>([]);
   const [search, setSearch] = useState("");
+  useEffect(() => {
+    axios
+      .get(
+        "https://restcountries.com/v3.1/all?fields=name,flags,population,capital"
+      )
+      .then((res) => {
+        setCountries(res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching countries:", err);
+      });
+  }, []);
 
   useEffect(() => {
-    axios.get("https://restcountries.com/v3.1/all").then((res) => {
-      const data = res.data as Country[];
-      setCountries(data);
-    });
+    axios
+      .get(
+        "https://restcountries.com/v3.1/all?fields=name,flags,population,capital"
+      )
+      .then((res) => {
+        setCountries(res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching countries:", err);
+      });
   }, []);
 
   const filtered = countries.filter((c) =>

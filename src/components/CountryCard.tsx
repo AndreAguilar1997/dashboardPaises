@@ -9,7 +9,9 @@ type CountryProps = {
   };
 };
 
+
 export default function CountryCard({ country }: CountryProps) {
+  
   return (
     <div className="card">
       <img src={country.flags.png} alt={`${country.name.common} flag`} />
